@@ -735,7 +735,9 @@ footer {
     .google-img-grid .img-stacked img,
     .kling-main-img img {
         width: 100%;
+        max-width: 100%;
         height: auto;
+        box-sizing: border-box;
     }
 
     .price-summary {
