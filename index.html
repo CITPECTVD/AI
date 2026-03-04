@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 影片製作現況分析與合作釐清 - KEfilm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="asset/img/logo.svg" alt="Logo">
+            </div>
+            <div class="top-nav-links">
+                <a href="#video-showcase">近期影片檢視</a>
+                <a href="#process">AI影片製程</a>
+                <a href="#budget">費用概覽</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 第一部分：AI影片分享 -->
+        <section id="video-showcase" class="section">
+            <div class="container">
+                <div class="heading-with-bar">
+                    <span class="bar"></span>
+                    <h2 class="section-title">近期 AI 影片檢視</h2>
+                </div>
+
+                <div class="tabs-control-group" id="showcase-tabs">
+                    <button class="pill-tab-btn active" data-tab="tab1">台啤</button>
+                    <button class="pill-tab-btn" data-tab="tab2">湯臣倍健</button>
+                    <button class="pill-tab-btn" data-tab="tab3">霍去病</button>
+                </div>
+
+                <div class="showcase-content">
+                    <!-- 台啤 -->
+                    <div class="tab-pane active" id="tab1">
+                        <div class="showcase-grid">
+                            <div class="showcase-media">
+                                <iframe src="https://www.youtube.com/embed/JzaXb-boeXI" title="台啤影片" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="showcase-meta">
+                                <h3 class="meta-label-brand">台啤廣告</h3>
+                                <p class="meta-label-time">發佈時間：2026.01.20</p>
+                                <p class="meta-label-desc">明星人物使用AI生成</p>
+                                <p class="meta-label-brief">台灣知名品牌廣告，呈現 AI 在真實寫實化合成技術上的頂尖表現。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 湯臣倍健 -->
+                    <div class="tab-pane" id="tab2">
+                        <div class="showcase-grid">
+                            <div class="showcase-media">
+                                <video controls>
+                                    <source src="asset/video/南極人.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="showcase-meta">
+                                <h3 class="meta-label-brand">湯臣倍健 (營養品)</h3>
+                                <p class="meta-label-time">發佈時間：2025.11.24</p>
+                                <p class="meta-label-desc">專場與細節豐富度展示</p>
+                                <p class="meta-label-brief">點擊前往原始連結：<a
+                                        href="https://www.facebook.com/share/v/17531Q2ruu/" target="_blank">Facebook
+                                        影片連結</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 霍去病 -->
+                    <div class="tab-pane" id="tab3">
+                        <div class="showcase-grid">
+                            <div class="showcase-media">
+                                <iframe src="https://www.youtube.com/embed/hu1qOSXnQ2M" title="霍去病影片" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="showcase-meta">
+                                <h3 class="meta-label-brand">霍去病</h3>
+                                <p class="meta-label-time">發佈時間：2026.02</p>
+                                <p class="meta-label-desc">中國創下五億瀏覽量</p>
+                                <p class="meta-label-brief">大型史詩場面，AI 技術於大規模動態生成與分鏡流暢度之指標性作品。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：明確的影片內容要素 -->
+        <section id="process" class="section">
+            <div class="container">
+                <div class="heading-with-bar">
+                    <span class="bar"></span>
+                    <h2 class="section-title">AI 影片製程</h2>
+                </div>
+
+                <div class="process-requirements">
+                    <h3 class="process-sub-title">明確的影片內容要素</h3>
+                    <p class="process-note">影片主題、溝通核心概念、視覺風格、劇情綱要、劇情細節、人物、場景、道具、音樂型態....以及任何對於影片的想像元素，以及特定物件的照片提供</p>
+
+                    <div class="tabs-control-group small-tabs" id="concept-tabs">
+                        <button class="pill-tab-btn active" data-tab="concept-text">文字概念</button>
+                        <button class="pill-tab-btn" data-tab="concept-video">成品</button>
+                    </div>
+
+                    <div class="concept-display">
+                        <div class="concept-pane active" id="concept-text">
+                            <div class="concept-cards-grid">
+                                <!-- 1. 影片主題 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">1</div>
+                                        <div class="c-card-title">影片主題</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <p>主題：「春節團圓」與「海外旅遊」的聯結。</p>
+                                        <p>影片展現了農曆新年的傳統習俗，並透過「旅行」賦予團圓新的意義。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 2. 溝通核心概念 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">2</div>
+                                        <div class="c-card-title">溝通核心概念</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <div class="c-highlight-box">
+                                            <strong>核心語彙：</strong>
+                                            <p>「有你的旅程，哪裡都是家」。</p>
+                                        </div>
+                                        <p>概念：品牌強調旅行不只是離開家，而是與心愛的人一起創造共同的回憶，將家的感覺延伸到世界的任何角落。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 3. 視覺風格 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">3</div>
+                                        <div class="c-card-title">視覺風格</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <h4>風格定位</h4>
+                                        <p>真人風格 (Live-action)。寫實的人物與居家場景，營造強烈的親近感與生活氣息。</p>
+
+                                        <h4>色調</h4>
+                                        <p>溫暖且飽和。以企業色「紅色」為視覺主軸，搭配黃光，最後轉向夕陽餘暉的粉紫色澤。</p>
+
+                                        <h4>運鏡</h4>
+                                        <p>中景與特寫交替。捕捉家人笑容、Surprise眼神，及登機證等關鍵物件細節。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 4. 劇情概要 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">4</div>
+                                        <div class="c-card-title">劇情概要</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <p>兒子一家三口回到奶奶家過年。全家人的年節活動後，在紅包環節發現驚喜，準備出國旅遊。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 5. 劇情細節 -->
+                                <div class="concept-card" style="grid-column: 1 / -1;">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">5</div>
+                                        <div class="c-card-title">劇情細節</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <div class="plot-details-section">
+                                            <div class="plot-version-box">
+                                                <span class="plot-version-label">描述版</span>
+                                                <p>除夕夜，家裡佈置得喜氣洋洋。全家人一起寫春聯、貼「囍」字，客廳充滿歡笑。圍爐時刻餐桌豐盛，特別是奶奶精心將肉片排成「花開富貴」花朵，舉杯慶祝。飯後在客廳玩華航特製大富翁「環遊世界」，小孫女興奮擲骰。拜年時間，奶奶遞給孫女紅包，發現裡面是前往東京的登機證！驚喜萬分之際，全家穿上紅衣、收拾行李，開心出發展開旅程。
+                                                </p>
+                                            </div>
+                                            <div class="plot-version-box">
+                                                <span class="plot-version-label">關鍵重點版</span>
+                                                <ul class="detailed-list-mini">
+                                                    <li><strong>傳統習俗：</strong> 寫春聯、貼「囍」字貼紙。</li>
+                                                    <li><strong>圍爐年菜：</strong> 吃火鍋，展示肉片「花開富貴」與「年年有餘」的魚。</li>
+                                                    <li><strong>家庭娛樂：</strong> 玩大富翁型態桌遊「環遊世界」。</li>
+                                                    <li><strong>拜年驚喜：</strong> 紅包中裝著前往東京（TOKYO）的登機證。</li>
+                                                    <li><strong>開心出發：</strong> 穿上紅色系服裝、收拾行李步出家門。</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6. 人物形象 -->
+                                <div class="concept-card" style="grid-column: 1 / -1;">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">6</div>
+                                        <div class="c-card-title">人物形象</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <div class="character-profiles">
+                                            <!-- Grandmother -->
+                                            <div class="character-card">
+                                                <span class="char-role">Grandmother</span>
+                                                <h5 class="char-name">奶奶</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>慈祥、充滿驚喜，凝聚家族情感的核心。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>年紀</strong>
+                                                    <p>約 60-70 歲</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>典雅的紅白色系拼接上衣，配戴珍珠項鍊。</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Son -->
+                                            <div class="character-card">
+                                                <span class="char-role">Son</span>
+                                                <h5 class="char-name">兒子</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>孝順且充滿活力的現代父母形象。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>年紀</strong>
+                                                    <p>約 30-35 歲</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>米白色高領毛衣，營造溫暖、可靠氣質。</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Daughter-in-law -->
+                                            <div class="character-card">
+                                                <span class="char-role">Daughter-in-law</span>
+                                                <h5 class="char-name">媳婦</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>孝順且充滿活力的現代父母形象。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>年紀</strong>
+                                                    <p>約 30-35 歲</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>亮紅色的露肩針織上衣，展現現代時尚感。</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Granddaughter -->
+                                            <div class="character-card">
+                                                <span class="char-role">Granddaughter</span>
+                                                <h5 class="char-name">小女孩</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>天真無邪，代表著對新事物與旅程的期待。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>背景</strong>
+                                                    <p>年紀約 5-7 歲，綁雙丸子頭。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>米色針織開襟衫搭配粉色系格子裙。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 7. 其他形象 (場景、道具) -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">7</div>
+                                        <div class="c-card-title">其他形象 (場景、道具)</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <ul class="detailed-list-mini">
+                                            <li><strong>關鍵場景：</strong> 喜氣洋洋的奶奶家客廳、溫馨圍爐餐桌、準備出發的居家門口。</li>
+                                            <li><strong>核心道具：</strong> 中華航空登機證(東京)、大富翁桌遊「環遊世界」、「花開富貴」肉片年菜、春聯。</li>
+                                            <li><strong>氛圍元素：</strong> 紅包袋、華航企業色紅白系服裝、室內溫暖黃光、夕陽粉紫色澤。</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 8. 音樂型態 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">8</div>
+                                        <div class="c-card-title">音樂型態</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <p><strong>風格：</strong> 輕快、和諧且節奏明亮的配樂。</p>
+                                        <p><strong>層次：</strong> 音樂隨著劇情的發展由溫馨平穩轉向高昂活潑，呼應及強化全量出國旅行的興奮心情。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="concept-pane" id="concept-video">
+                            <div class="video-preview-box">
+                                <div class="fb-video-container">
+                                    <iframe
+                                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1326016251731872&show_text=0&width=560"
+                                        width="100%" height="450" style="border:none;overflow:hidden" scrolling="no"
+                                        frameborder="0" allowfullscreen="true"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="separator">
+
+                <div class="visual-output-section">
+                    <div class="visual-output-grid">
+                        <div class="visual-output-text">
+                            <p style="font-size: 1.6rem; color: #444; font-weight: 600; margin-bottom: 50px;">
+                                有了明確的影片內容要素後...</p>
+                            <h3>影片元素形象定調</h3>
+                            <p>人物、場景、視覺風格、道具....等文字描述圖像化</p>
+                            <br>
+                            <h3>影片分鏡 [文字+圖]</h3>
+                            <p>逐格溝通腳本</p>
+                            <br>
+                            <h3>影片生成與後製(開頭30S先行，階段性、滾動調整)</h3>
+                        </div>
+                        <div class="visual-output-media">
+                            <video autoplay loop muted playsinline>
+                                <source src="asset/video/分鏡到影片.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：費用概覽 -->
+        <section id="budget" class="section bg-light">
+            <div class="container">
+                <div class="heading-with-bar">
+                    <span class="bar"></span>
+                    <h2 class="section-title">AI 生成費用概括</h2>
+                </div>
+
+                <!-- 圖片費用 -->
+                <div class="cost-item-block">
+                    <h3 class="cost-type-title">圖片</h3>
+                    <div class="cost-screenshot-full">
+                        <img src="asset/img/圖片生成.png" alt="圖片生成費用詳情">
+                    </div>
+                    <div class="cost-calculation">
+                        <p>假設 5s 一張圖，300s 共 60 張，每張 15 次，可能有時候 1-2 秒就會換一張圖，再 *2</p>
+                        <p>60 * 15 * 2 = 1800 (張)</p>
+                        <p class="final-price">1800 * (0.134 ~ 0.24) * 32 = <span class="highlight-blue">$7,718 ~
+                                $13,824 TWD</span></p>
+                    </div>
+                </div>
+
+                <!-- 影片費用 -->
+                <div class="cost-item-block">
+                    <h3 class="cost-type-title">影片 (1080p)</h3>
+                    <div class="video-budget-rows">
+                        <!-- Google Row -->
+                        <div class="video-budget-row">
+                            <div class="v-budget-visual">
+                                <h4 class="v-model-title">Google 影片單次長度 8 秒</h4>
+                                <div class="google-img-grid">
+                                    <div class="img-large">
+                                        <img src="asset/img/GoogleVeo1.png" alt="Google Veo Pricing">
+                                    </div>
+                                    <div class="img-stacked">
+                                        <img src="asset/img/GoogleVeo2.png" alt="Veo Quality">
+                                        <img src="asset/img/GoogleVeo3.png" alt="Veo Fast">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="v-budget-divider"></div>
+                            <div class="v-budget-details">
+                                <div class="cost-desc-text">
+                                    <p>單次生成 8 秒影片</p>
+                                    <p>1s = 2.5 ~ 12.5點</p>
+                                    <p>5 分鐘 300s = 750~3750點(每個片段只生成一次)</p>
+                                    <p>每個片段都生成 15 次 = 11250~56250點</p>
+                                    <div class="price-summary">
+                                        <span class="highlight-blue">(0.324) $3645~$18225 TWD</span>
+                                        <span class="highlight-blue">(0.162) $12150 + 單月生成不足額的另購金額</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kling Row -->
+                        <div class="video-budget-row">
+                            <div class="v-budget-visual">
+                                <h4 class="v-model-title">Kling 影片單次長度 5 秒</h4>
+                                <div class="kling-main-img">
+                                    <img src="asset/img/Kling1.png" alt="Kling Pricing">
+                                </div>
+                                <div class="kling-model-labels">
+                                    <div class="model-label-row">
+                                        <img src="asset/img/Kling2.png" alt="New Model Button">
+                                        <span>新模型</span>
+                                    </div>
+                                    <div class="model-label-row">
+                                        <img src="asset/img/Kling3.png" alt="Stable Model Button">
+                                        <span>較舊但穩定模型</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="v-budget-divider"></div>
+                            <div class="v-budget-details">
+                                <div class="cost-desc-text">
+                                    <p>單次生成 5 秒影片</p>
+                                    <p>1s = 5 ~ 12 點</p>
+                                    <p>5 分鐘 300s = 1500~3600點(每個片段只生成一次)</p>
+                                    <p>每個片段都生成 15 次 = 22500~54000點</p>
+                                    <div class="price-summary">
+                                        <span class="highlight-blue">(0.008USD*32=0.256TWD)</span>
+                                        <span class="highlight-blue">$5760 ~ $13824 TWD(但需要以兩萬的倍數購買)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TPECT China Airlines</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

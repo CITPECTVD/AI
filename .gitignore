@@ -1,0 +1,20 @@
+# Mac/Windows System files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+.npm/
+
+# Firebase
+.firebase/
+firebase-debug.log*
+
+# Other temporary or generated files
+*.zip
+tmp*/
+**/*.pyc
+**/*.pptx
+
+# Large source files you might not want to track (if applicable, you can comment this out to track everything)
+# asset/video/*.mp4
