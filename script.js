@@ -51,13 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     console.error(`Target pane not found for button:`, btn);
                 }
-
-                // 5. 切換時暫停背景影片
-                document.querySelectorAll('video').forEach(v => v.pause());
+                // 5. 切換時僅暫停被隱藏區塊內的影片，不影響全局自動播放的影片（如狗狗分鏡）
+                panes.forEach(p => {
+                    p.querySelectorAll('video').forEach(v => v.pause());
+                });
             });
         });
-
-        // 初始化狀態：確保只有 active 的顯示
         panes.forEach(p => {
             if (!p.classList.contains('active')) {
                 p.style.display = 'none';
