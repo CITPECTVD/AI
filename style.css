@@ -667,10 +667,30 @@ footer {
 }
 
 @media (max-width: 900px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .header-container {
+        padding: 0 20px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    header {
+        height: 70px;
+    }
+
+    body {
+        padding-top: 70px;
+    }
 
     .showcase-grid,
     .visual-output-grid,
-    .video-cost-grid {
+    .video-cost-grid,
+    .concept-cards-grid {
         grid-template-columns: 1fr;
     }
 
@@ -678,6 +698,52 @@ footer {
     .meta-label-time,
     .meta-label-desc {
         text-align: left;
+    }
+
+    /* Fixed inline flex directions for concept cards */
+    div[style*="display: flex"] {
+        flex-direction: column;
+        gap: 20px !important;
+    }
+
+    /* Budget Row Mobile Adjustments */
+    .video-budget-row {
+        grid-template-columns: 1fr;
+        margin-bottom: 50px;
+    }
+
+    .v-budget-visual {
+        padding-right: 0;
+    }
+
+    .v-budget-divider {
+        display: none;
+    }
+
+    .v-budget-details {
+        padding-left: 0;
+        margin-top: 20px;
+        border-top: 2px solid #ddd;
+        padding-top: 20px;
+    }
+
+    .google-img-grid {
+        flex-direction: column;
+    }
+
+    .google-img-grid .img-large img,
+    .google-img-grid .img-stacked img,
+    .kling-main-img img {
+        width: 100%;
+        height: auto;
+    }
+
+    .price-summary {
+        margin-top: 20px;
+    }
+
+    .concept-card {
+        grid-column: 1 / -1 !important;
     }
 }
 
