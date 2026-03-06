@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "tpectaifilm",
     "public": ".",
     "ignore": [
       "firebase.json",

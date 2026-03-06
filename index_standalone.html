@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 影片製作分析</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+:root {
+    --primary-blue: #23569D;
+    --text-color: #333333;
+    --secondary-text: #666666;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --border-color: #e0e0e0;
+    --accent-red: #d9534f;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--bg-white);
+    padding-top: 100px;
+    /* Offset for fixed header */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+/* Header */
+header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    background-color: var(--primary-blue);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 70px;
+}
+
+.top-nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    margin-left: 20px;
+    font-size: 0.95rem;
+}
+
+/* Heading with Bar */
+.heading-with-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.heading-with-bar .bar {
+    width: 6px;
+    height: 35px;
+    background-color: var(--primary-blue);
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Tabs */
+.tabs-control-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.pill-tab-btn {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e9ecef;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-speed);
+    font-weight: 500;
+}
+
+.pill-tab-btn.active {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.small-tabs .pill-tab-btn {
+    padding: 5px 15px;
+    font-size: 0.9rem;
+}
+
+/* Showcase Grid */
+.showcase-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.showcase-media {
+    background-color: #000;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.showcase-media iframe,
+.showcase-media video {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.showcase-meta h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.meta-label-time {
+    display: block;
+    text-align: right;
+    color: var(--secondary-text);
+    margin-bottom: 5px;
+}
+
+.meta-label-desc {
+    display: block;
+    text-align: right;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.meta-label-brief {
+    font-size: 1rem;
+    margin-top: 30px;
+    color: var(--secondary-text);
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+/* Concept Content Refinement */
+.concept-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.concept-card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concept-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.c-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.c-card-icon {
+    width: 40px;
+    height: 40px;
+    background: #eef2f7;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.c-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.c-card-body h4 {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--primary-blue);
+    padding-left: 10px;
+    margin-top: 15px;
+}
+
+.c-card-body p {
+    color: var(--secondary-text);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.c-highlight-box {
+    background: #f8faff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.c-highlight-box strong {
+    color: var(--primary-blue);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.plot-details-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.plot-version-box {
+    padding: 20px;
+    background: #fcfcfc;
+    border-radius: 10px;
+    border: 1px dashed #ddd;
+}
+
+.plot-version-label {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--primary-blue);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.detailed-list-mini {
+    list-style: none;
+    padding: 0;
+}
+
+.detailed-list-mini li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.detailed-list-mini li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+/* Character Profiles Refinement */
+.character-profiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.character-card {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.character-card:hover {
+    border-color: var(--primary-blue);
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.char-role {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    background: #eef2f7;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.char-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.char-detail-item {
+    margin-bottom: 10px;
+}
+
+.char-detail-item strong {
+    font-size: 0.9rem;
+    color: #555;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.char-detail-item p {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    margin: 0 !important;
+}
+
+
+/* Process Section Original Styles Cleanup */
+.process-requirements {
+    background: transparent;
+    padding: 30px 0;
+}
+
+.process-sub-title {
+    color: var(--primary-blue);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.process-note {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.detailed-list-container {
+    margin-top: 30px;
+}
+
+.detailed-list {
+    list-style: none;
+}
+
+.detailed-list li {
+    margin-bottom: 25px;
+    padding-left: 0;
+}
+
+.detailed-list li strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.detailed-list li p {
+    color: var(--secondary-text);
+    margin-bottom: 4px;
+}
+
+.video-preview-box {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.video-preview-box video {
+    width: 100%;
+}
+
+.separator {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 60px 0;
+}
+
+.visual-output-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.visual-output-text h3 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.visual-output-media video {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Budget Section */
+.cost-item-block {
+    margin-bottom: 60px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.cost-type-title {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 25px;
+}
+
+.cost-screenshot-full img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+
+.cost-calculation {
+    background: #fdfdfd;
+    padding: 20px;
+    border-left: 4px solid var(--primary-blue);
+}
+
+.final-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.price-highlight {
+    color: var(--primary-blue);
+}
+
+.video-cost-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.video-cost-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.screenshot-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.screenshot-group img {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.cost-details p {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.price-val {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.note {
+    font-size: 0.85rem;
+    color: var(--accent-red);
+}
+
+.model-labels {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    margin-top: 30px;
+    font-weight: 500;
+}
+
+/* Budget Section Update */
+.video-budget-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    margin-top: 40px;
+}
+
+.video-budget-row {
+    display: grid;
+    grid-template-columns: 6fr 2px 4fr;
+    /* Locks the divider at the 60% position for both rows */
+    align-items: center;
+    margin-bottom: 100px;
+    width: 100%;
+}
+
+.v-model-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+.v-budget-visual {
+    padding-right: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.google-img-grid {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.google-img-grid .img-large img {
+    height: 380px;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.google-img-grid .img-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.google-img-grid .img-stacked img {
+    height: 182px;
+    width: auto;
+    border-radius: 12px;
+}
+
+.kling-main-img img {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.kling-model-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.model-label-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.model-label-row img {
+    height: 38px;
+    width: auto;
+}
+
+.model-label-row span {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.v-budget-divider {
+    width: 2px;
+    height: 450px;
+    background-color: #333;
+    opacity: 1;
+}
+
+.v-budget-details {
+    padding-left: 50px;
+}
+
+.cost-desc-text p {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.price-summary {
+    margin-top: 40px;
+}
+
+.highlight-blue {
+    color: #23569D !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Tab display logic */
+.tab-pane,
+.concept-pane {
+    display: none;
+}
+
+.tab-pane.active,
+.concept-pane.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+footer {
+    padding: 40px 0;
+    background: #333;
+    color: #fff;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .header-container {
+        padding: 0 20px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    header {
+        height: 70px;
+    }
+
+    body {
+        padding-top: 70px;
+    }
+
+    .showcase-grid,
+    .visual-output-grid,
+    .video-cost-grid,
+    .concept-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-meta h3,
+    .meta-label-time,
+    .meta-label-desc {
+        text-align: left;
+    }
+
+    /* Fixed inline flex directions for concept cards */
+    div[style*="display: flex"] {
+        flex-direction: column;
+        gap: 20px !important;
+    }
+
+    /* Budget Row Mobile Adjustments */
+    .video-budget-row {
+        grid-template-columns: 1fr;
+        margin-bottom: 50px;
+    }
+
+    .v-budget-visual {
+        padding-right: 0;
+    }
+
+    .v-budget-divider {
+        display: none;
+    }
+
+    .v-budget-details {
+        padding-left: 0;
+        margin-top: 20px;
+        border-top: 2px solid #ddd;
+        padding-top: 20px;
+    }
+
+    .google-img-grid {
+        flex-direction: column;
+    }
+
+    .google-img-grid .img-large img,
+    .google-img-grid .img-stacked img,
+    .kling-main-img img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .price-summary {
+        margin-top: 20px;
+    }
+
+    .concept-card {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+/* Video Preview Styling */
+.video-preview-box {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.fb-video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.fb-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="asset/img/logo.svg" alt="Logo">
+            </div>
+            <div class="top-nav-links">
+                <a href="#video-showcase">近期影片檢視</a>
+                <a href="#process">AI影片製程</a>
+                <a href="#budget">費用概覽</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 第一部分：AI影片分享 -->
+        <section id="video-showcase" class="section">
+            <div class="container">
+                <div class="heading-with-bar">
+                    <span class="bar"></span>
+                    <h2 class="section-title">近期 AI 影片檢視</h2>
+                </div>
+
+                <div class="tabs-control-group" id="showcase-tabs">
+                    <button class="pill-tab-btn active" data-tab="tab1">台啤</button>
+                    <button class="pill-tab-btn" data-tab="tab2">湯臣倍健</button>
+                    <button class="pill-tab-btn" data-tab="tab3">霍去病</button>
+                    <button class="pill-tab-btn" data-tab="tab4">偶動畫</button>
+                </div>
+
+                <div class="showcase-content">
+                    <!-- 台啤 -->
+                    <div class="tab-pane active" id="tab1">
+                        <div class="showcase-grid">
+                            <div class="showcase-media">
+                                <iframe src="https://www.youtube.com/embed/JzaXb-boeXI" title="台啤影片" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="showcase-meta">
+                                <h3 class="meta-label-brand">台啤廣告</h3>
+                                <p class="meta-label-time">發佈時間：2026.01.20</p>
+                                <p class="meta-label-desc">明星人物使用AI生成</p>
+                                <p class="meta-label-brief">台灣近期討論度較高的 AI 廣告。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 湯臣倍健 -->
+                    <div class="tab-pane" id="tab2">
+                        <div class="showcase-grid">
+                            <div class="showcase-media">
+                                <video controls>
+                                    <source src="asset/video/南極人.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="showcase-meta">
+                                <h3 class="meta-label-brand">湯臣倍健 (營養品廣告)</h3>
+                                <p class="meta-label-time">發佈時間：2025.11.24</p>
+                                <p class="meta-label-desc">專場與細節豐富度展示</p>
+                                <p class="meta-label-brief">點擊前往原始連結：<a
+                                        href="https://www.facebook.com/share/v/17531Q2ruu/" target="_blank">Facebook
+                                        影片連結</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 霍去病 -->
+                    <div class="tab-pane" id="tab3">
+                        <div class="showcase-grid">
+                            <div class="showcase-media">
+                                <iframe src="https://www.youtube.com/embed/BtSLh8RVRIM" title="霍去病影片" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="showcase-meta">
+                                <h3 class="meta-label-brand">霍去病(短版電影)</h3>
+                                <p class="meta-label-time">發佈時間：2026.02</p>
+                                <p class="meta-label-desc">中國創下五億瀏覽量</p>
+                                <p class="meta-label-brief">大型史詩場面，AI 技術於大規模動態生成與分鏡流暢度之指標性作品。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 偶動畫 -->
+                    <div class="tab-pane" id="tab4">
+                        <div class="showcase-grid">
+                            <div class="showcase-media">
+                                <iframe src="https://www.youtube.com/embed/gLTbl8Jfi4s" title="偶動畫影片" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="showcase-meta">
+                                <h3 class="meta-label-brand">偶動畫</h3>
+                                <p class="meta-label-time">發佈時間：2026.03.02</p>
+                                <p class="meta-label-desc">AI 動畫應用</p>
+                                <p class="meta-label-brief">展現 AI 影片生成在動畫風格上的表現力。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：明確的影片內容要素 -->
+        <section id="process" class="section">
+            <div class="container">
+                <div class="heading-with-bar">
+                    <span class="bar"></span>
+                    <h2 class="section-title">AI 影片製程</h2>
+                </div>
+
+                <div class="process-requirements">
+                    <h3 class="process-sub-title">明確的影片內容要素</h3>
+                    <p class="process-note">影片主題、溝通核心概念、視覺風格、劇情綱要、劇情細節、人物、場景、道具、音樂型態....以及任何對於影片的想像元素，以及特定物件的照片提供</p>
+
+                    <div class="tabs-control-group small-tabs" id="concept-tabs">
+                        <button class="pill-tab-btn active" data-tab="concept-video">新年影片</button>
+                        <button class="pill-tab-btn" data-tab="concept-text">文字概念</button>
+                    </div>
+
+                    <div class="concept-display">
+                        <div class="concept-pane" id="concept-text">
+                            <div class="concept-cards-grid">
+                                <!-- 1. 影片主題 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">1</div>
+                                        <div class="c-card-title">影片主題</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <p>主題：「春節團圓」與「海外旅遊」的聯結。</p>
+                                        <p>影片展現了農曆新年的傳統習俗，並透過「旅行」賦予團圓新的意義。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 2. 溝通核心概念 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">2</div>
+                                        <div class="c-card-title">溝通核心概念</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <div class="c-highlight-box">
+                                            <strong>核心語彙：</strong>
+                                            <p>「有你的旅程，哪裡都是家」。</p>
+                                        </div>
+                                        <p>概念：品牌強調旅行不只是離開家，而是與心愛的人一起創造共同的回憶，將家的感覺延伸到世界的任何角落。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 3. 視覺風格 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">3</div>
+                                        <div class="c-card-title">視覺風格</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <h4>風格定位</h4>
+                                        <p>真人風格 (Live-action)。寫實的人物與居家場景，營造強烈的親近感與生活氣息。</p>
+
+                                        <h4>色調</h4>
+                                        <p>溫暖且飽和。以企業色「紅色」為視覺主軸，搭配黃光，最後轉向夕陽餘暉的粉紫色澤。</p>
+
+                                        <h4>運鏡</h4>
+                                        <p>中景與特寫交替。捕捉家人笑容、Surprise眼神，及登機證等關鍵物件細節。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 4. 劇情概要 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">4</div>
+                                        <div class="c-card-title">劇情概要</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <p>兒子一家三口回到奶奶家過年。全家人的年節活動後，在紅包環節發現驚喜，準備出國旅遊。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 5. 劇情細節 -->
+                                <div class="concept-card" style="grid-column: 1 / -1;">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">5</div>
+                                        <div class="c-card-title">劇情細節</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <div class="plot-details-section">
+                                            <div class="plot-version-box">
+                                                <span class="plot-version-label">描述版</span>
+                                                <p>除夕夜，家裡佈置得喜氣洋洋。全家人一起寫春聯、貼「囍」字，客廳充滿歡笑。圍爐時刻餐桌豐盛，特別是奶奶精心將肉片排成「花開富貴」花朵，舉杯慶祝。飯後在客廳玩華航特製大富翁「環遊世界」，小孫女興奮擲骰。拜年時間，奶奶遞給孫女紅包，發現裡面是前往東京的登機證！驚喜萬分之際，全家穿上紅衣、收拾行李，開心出發展開旅程。
+                                                </p>
+                                            </div>
+                                            <div class="plot-version-box">
+                                                <span class="plot-version-label">關鍵重點版</span>
+                                                <ul class="detailed-list-mini">
+                                                    <li><strong>傳統習俗：</strong> 寫春聯、貼「囍」字貼紙。</li>
+                                                    <li><strong>圍爐年菜：</strong> 吃火鍋，展示肉片「花開富貴」與「年年有餘」的魚。</li>
+                                                    <li><strong>家庭娛樂：</strong> 玩大富翁型態桌遊「環遊世界」。</li>
+                                                    <li><strong>拜年驚喜：</strong> 紅包中裝著前往東京（TOKYO）的登機證。</li>
+                                                    <li><strong>開心出發：</strong> 穿上紅色系服裝、收拾行李步出家門。</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6. 人物形象 -->
+                                <div class="concept-card" style="grid-column: 1 / -1;">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">6</div>
+                                        <div class="c-card-title">人物形象</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <div class="character-profiles">
+                                            <!-- Grandmother -->
+                                            <div class="character-card">
+                                                <span class="char-role">Grandmother</span>
+                                                <h5 class="char-name">奶奶</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>慈祥、充滿驚喜，凝聚家族情感的核心。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>年紀</strong>
+                                                    <p>約 60-70 歲</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>典雅的紅白色系拼接上衣，配戴珍珠項鍊。</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Son -->
+                                            <div class="character-card">
+                                                <span class="char-role">Son</span>
+                                                <h5 class="char-name">兒子</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>孝順且充滿活力的現代父母形象。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>年紀</strong>
+                                                    <p>約 30-35 歲</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>米白色高領毛衣，營造溫暖、可靠氣質。</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Daughter-in-law -->
+                                            <div class="character-card">
+                                                <span class="char-role">Daughter-in-law</span>
+                                                <h5 class="char-name">媳婦</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>孝順且充滿活力的現代父母形象。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>年紀</strong>
+                                                    <p>約 30-35 歲</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>亮紅色的露肩針織上衣，展現現代時尚感。</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Granddaughter -->
+                                            <div class="character-card">
+                                                <span class="char-role">Granddaughter</span>
+                                                <h5 class="char-name">小女孩</h5>
+                                                <div class="char-detail-item">
+                                                    <strong>人物形象</strong>
+                                                    <p>天真無邪，代表著對新事物與旅程的期待。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>背景</strong>
+                                                    <p>年紀約 5-7 歲，綁雙丸子頭。</p>
+                                                </div>
+                                                <div class="char-detail-item">
+                                                    <strong>服裝</strong>
+                                                    <p>米色針織開襟衫搭配粉色系格子裙。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 7. 其他形象 (場景、道具) -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">7</div>
+                                        <div class="c-card-title">其他形象 (場景、道具)</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <ul class="detailed-list-mini">
+                                            <li><strong>關鍵場景：</strong> 喜氣洋洋的奶奶家客廳、溫馨圍爐餐桌、準備出發的居家門口。</li>
+                                            <li><strong>核心道具：</strong> 中華航空登機證(東京)、大富翁桌遊「環遊世界」、「花開富貴」肉片年菜、春聯。</li>
+                                            <li><strong>氛圍元素：</strong> 紅包袋、華航企業色紅白系服裝、室內溫暖黃光、夕陽粉紫色澤。</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 8. 音樂型態 -->
+                                <div class="concept-card">
+                                    <div class="c-card-header">
+                                        <div class="c-card-icon">8</div>
+                                        <div class="c-card-title">音樂型態</div>
+                                    </div>
+                                    <div class="c-card-body">
+                                        <p><strong>風格：</strong> 輕快、和諧且節奏明亮的配樂。</p>
+                                        <p><strong>層次：</strong> 音樂隨著劇情的發展由溫馨平穩轉向高昂活潑，呼應及強化全量出國旅行的興奮心情。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="concept-pane active" id="concept-video">
+                            <div class="video-preview-box">
+                                <div class="fb-video-container">
+                                    <iframe
+                                        src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1326016251731872&show_text=0&width=560"
+                                        width="100%" height="450" style="border:none;overflow:hidden" scrolling="no"
+                                        frameborder="0" allowfullscreen="true"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="separator">
+
+                <div class="visual-output-section">
+                    <div class="visual-output-grid">
+                        <div class="visual-output-text">
+                            <p style="font-size: 1.6rem; color: #444; font-weight: 600; margin-bottom: 50px;">
+                                有了明確的影片內容要素後...</p>
+                            <h3>影片元素形象定調</h3>
+                            <p>人物、場景、視覺風格、道具....等文字描述圖像化</p>
+                            <br>
+                            <h3>影片分鏡 [文字+圖]</h3>
+                            <p>逐格溝通腳本</p>
+                            <br>
+                            <h3>影片生成與後製(開頭 30s 先行，階段性、滾動調整)</h3>
+                        </div>
+                        <div class="visual-output-media">
+                            <video autoplay loop muted playsinline>
+                                <source src="asset/video/分鏡到影片.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：費用概覽 -->
+        <section id="budget" class="section bg-light">
+            <div class="container">
+                <div class="heading-with-bar">
+                    <span class="bar"></span>
+                    <h2 class="section-title">AI 生成費用概括</h2>
+                </div>
+
+                <!-- 圖片費用 -->
+                <div class="cost-item-block">
+                    <h3 class="cost-type-title">圖片</h3>
+                    <div class="cost-screenshot-full">
+                        <img src="asset/img/圖片生成.png" alt="圖片生成費用詳情">
+                    </div>
+                    <div class="cost-calculation">
+                        <p>假設 5s 一張分鏡圖，300s 共 60 張，每張 15 次，可能有時候 1-2 秒就會換一張圖，再 *2</p>
+                        <p>60 * 15 * 2 = 1800 (張)</p>
+                        <p class="final-price">1800 * (0.134 ~ 0.24) * 32 = <span class="highlight-blue">$7,718 ~
+                                $13,824 TWD</span></p>
+                    </div>
+                </div>
+
+                <!-- 影片費用 -->
+                <div class="cost-item-block">
+                    <h3 class="cost-type-title">影片 (1080p)</h3>
+                    <p style="font-size: 1.2rem; color: #444; margin-bottom: 30px;">假設 100 個分鏡，每個分鏡生成 15 次 = <strong>共
+                            1,500 次生成</strong></p>
+                    <div class="video-budget-rows">
+                        <!-- Google Row -->
+                        <div class="video-budget-row">
+                            <div class="v-budget-visual">
+                                <h4 class="v-model-title">Google 影片單次長度 8 秒</h4>
+                                <div class="google-img-grid">
+                                    <div class="img-large">
+                                        <img src="asset/img/GoogleVeo1.png" alt="Google Veo Pricing">
+                                    </div>
+                                    <div class="img-stacked">
+                                        <img src="asset/img/GoogleVeo2.png" alt="Veo Quality">
+                                        <img src="asset/img/GoogleVeo3.png" alt="Veo Fast">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="v-budget-divider"></div>
+                            <div class="v-budget-details">
+                                <div class="cost-desc-text">
+                                    <p>1,500 次生成 = 30,000 ~ 150,000 點</p>
+                                    <div class="price-summary">
+                                        <p><strong>【隨買隨用】</strong> (0.324)</p>
+                                        <span class="highlight-blue">$9,720 ~ $48,600 TWD</span>
+                                        <br>
+                                        <p><strong>【月費制 3 個月】</strong> 每月 $4,050 含 25,000 點</p>
+                                        <p>最高需加購 75,000 點 × 0.324 = $24,300</p>
+                                        <p>4050×3 + 24300 = 36,450</p>
+                                        <span class="highlight-blue" style="margin-top: 5px;">月費總計 $12,150 ~ $36,450
+                                            TWD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kling Row -->
+                        <div class="video-budget-row">
+                            <div class="v-budget-visual">
+                                <h4 class="v-model-title">Kling 影片單次長度 5 秒</h4>
+                                <div class="kling-main-img">
+                                    <img src="asset/img/Kling1.png" alt="Kling Pricing">
+                                </div>
+                                <div class="kling-model-labels">
+                                    <div class="model-label-row">
+                                        <img src="asset/img/Kling2.png" alt="New Model Button">
+                                        <span>新模型</span>
+                                    </div>
+                                    <div class="model-label-row">
+                                        <img src="asset/img/Kling3.png" alt="Stable Model Button">
+                                        <span>較舊但穩定模型</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="v-budget-divider"></div>
+                            <div class="v-budget-details">
+                                <div class="cost-desc-text">
+                                    <p>1,500 次生成 = 37,500 ~ 90,000 點</p>
+                                    <div class="price-summary">
+                                        <p><strong>【預估費用】</strong> (0.008USD*32=0.256TWD)</p>
+                                        <span class="highlight-blue">$9,600 ~ $23,040 TWD</span>
+                                        <p class="note" style="margin-top: 5px;">(需以兩萬點的倍數購買)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TPECT China Airlines</p>
+        </div>
+    </footer>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 獲取所有頁籤按鈕與內容容器
+    initTabs('showcase-tabs', '.pill-tab-btn', '.tab-pane');
+    initTabs('concept-tabs', '.pill-tab-btn', '.concept-pane');
+
+    // 通用的頁籤切換邏輯
+    function initTabs(containerId, buttonSelector, paneSelector) {
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.warn(`Container with ID "${containerId}" not found.`);
+            return;
+        }
+
+        const buttons = container.querySelectorAll(buttonSelector);
+        const parentSection = container.closest('section') || container.parentElement;
+        const panes = parentSection.querySelectorAll(paneSelector);
+
+        if (buttons.length === 0) {
+            console.warn(`No buttons found with selector "${buttonSelector}" in container "${containerId}".`);
+            return;
+        }
+
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log(`Tab clicked: ${btn.textContent} (Tab ID: ${btn.dataset.tab})`);
+
+                // 1. 移除該容器內所有按鈕的 active
+                buttons.forEach(b => b.classList.remove('active'));
+
+                // 2. 隱藏該區塊內所有的 panes
+                panes.forEach(p => {
+                    p.classList.remove('active');
+                    p.style.display = 'none'; // 強制隱藏
+                });
+
+                // 3. 為當前按鈕添加 active
+                btn.classList.add('active');
+
+                // 4. 顯示對應的內容
+                let targetPane;
+                if (btn.dataset.tab) {
+                    targetPane = document.getElementById(btn.dataset.tab);
+                } else {
+                    targetPane = panes[index];
+                }
+
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                    targetPane.style.display = 'block'; // 強制顯示
+                } else {
+                    console.error(`Target pane not found for button:`, btn);
+                }
+                // 5. 切換時僅暫停被隱藏區塊內的影片，不影響全局自動播放的影片（如狗狗分鏡）
+                panes.forEach(p => {
+                    p.querySelectorAll('video').forEach(v => v.pause());
+                });
+            });
+        });
+        panes.forEach(p => {
+            if (!p.classList.contains('active')) {
+                p.style.display = 'none';
+            } else {
+                p.style.display = 'block';
+            }
+        });
+    }
+
+    // 當滾動時改變 Header 的陰影效果
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+        } else {
+            header.style.boxShadow = 'none';
+        }
+    });
+
+    // 平滑滾動至錨點
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+
+</script>
+</body>
+
+</html>
