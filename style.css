@@ -150,19 +150,19 @@ header {
 .showcase-meta h3 {
     font-size: 1.8rem;
     margin-bottom: 10px;
-    text-align: right;
+    text-align: left;
 }
 
 .meta-label-time {
     display: block;
-    text-align: right;
+    text-align: left;
     color: var(--secondary-text);
     margin-bottom: 5px;
 }
 
 .meta-label-desc {
     display: block;
-    text-align: right;
+    text-align: left;
     font-weight: 600;
     margin-bottom: 20px;
 }
