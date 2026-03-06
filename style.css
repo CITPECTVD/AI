@@ -428,8 +428,13 @@ header {
     margin-bottom: 10px;
 }
 
+.visual-output-media {
+    text-align: center;
+}
+
 .visual-output-media video {
-    width: 100%;
+    width: 66%;
+    max-width: 800px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
