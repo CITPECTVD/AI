@@ -20,7 +20,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--bg-white);
-    padding-top: 100px;
+    padding-top: 85px;
     /* Offset for fixed header */
 }
 
@@ -41,7 +41,7 @@ body {
 
 /* Header */
 header {
-    height: 100px;
+    height: 85px;
     display: flex;
     align-items: center;
     border-bottom: 2px solid var(--border-color);
